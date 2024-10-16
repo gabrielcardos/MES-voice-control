@@ -55,6 +55,7 @@ function speechToText() {
       if (event.results[0].isFinal) {
         result.innerHTML += " " + speechResult;
         result.querySelector("p").remove();
+        ws.send(speechResult);
       } else {
         //creative p with class interim if not already there
         if (!document.querySelector(".interim")) {
@@ -65,7 +66,6 @@ function speechToText() {
         //update the interim p with the speech result
         document.querySelector(".interim").innerHTML = " " + speechResult;
         console.log("New phrase identified: ", speechResult)
-        ws.send(speechResult);
       }
       downloadBtn.disabled = false;
     };
